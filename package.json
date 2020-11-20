@@ -6,13 +6,19 @@
   "scripts": {
     "start": "node index.js",
     "dev": "nodemon index.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build:ui": "rm -rf build && cd ../FSO/Round3/puhelinluettelo && npm run build --prod && cp -r build ../../../FSO_Round3",
+    "deploy": "git push heroku main",
+    "deploy:full": "npm run build:ui && git add . && git commit -m uibuild && git push && npm run deploy",
+    "logs:prod": "heroku logs --tail"
   },
   "author": "Touko Lonka",
   "license": "ISC",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
     "express": "^4.17.1",
+    "mongoose": "^5.10.15",
     "morgan": "^1.10.0"
   },
   "devDependencies": {
